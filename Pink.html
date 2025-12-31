@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TueNhi's Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- CSS VARIABLES & RESET (THEME HỒNG PASTEL) --- */
+      :root {
+        --bg-color: #ffffff; /* Nền trắng sạch */
+        --text-primary: #594a4e; /* Màu chữ chính: Nâu xám ấm */
+        --text-secondary: #96888a; /* Màu chữ phụ: Xám hồng nhạt */
+        --border-color: #f0dcdf; /* Viền: Hồng nhạt */
+        --hover-bg: #fff0f3; /* Hover: Hồng phấn rất nhạt */
+
+        /* Màu điểm nhấn (Nút bấm, Icon) */
+        --accent-color: #d68c9e; /* Dusty Rose (Hồng tro) */
+        --accent-hover: #c4768a; /* Đậm hơn khi hover nút */
+
+        --max-width: 960px;
+
+        /* Tag Colors (Giữ nguyên style Notion nhưng làm dịu đi) */
+        --tag-green-bg: #e6f3e6;
+        --tag-green-text: #2e5c36;
+        --tag-purple-bg: #f3eefc;
+        --tag-purple-text: #50346c;
+        --tag-orange-bg: #fdefe3;
+        --tag-orange-text: #854c1d;
+        --tag-red-bg: #ffe6e6;
+        --tag-red-text: #6e3630;
+        --tag-grey-bg: #f1f0ef;
+        --tag-grey-text: #5a5a5a;
+
+        /* Contact Section Colors (Theme Hồng) */
+        --contact-bg: #fcecf0; /* Nền Contact: Hồng kem */
+        --contact-header: #a65d6e; /* Tiêu đề Contact: Hồng đất đậm */
+
+        /* Modal Colors */
+        --feedback-bg: #f4f6fb; /* Feedback giữ màu xanh nhạt cho dễ đọc */
+        --revision-bg: #f0fdf4; /* Revision giữ màu xanh lá nhạt */
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: 0.2s ease;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* --- LAYOUT CONTAINER --- */
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+      }
+
+      /* --- NAVIGATION --- */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        margin-bottom: 4rem;
+        border-bottom: 1px solid transparent;
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        z-index: 50;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--contact-header); /* Logo màu hồng đất */
+      }
+      .nav-links a {
+        margin-left: 1.5rem;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        font-weight: 500;
+      }
+      .nav-links a:hover {
+        color: var(--accent-color);
+      }
+
+      /* --- HERO SECTION --- */
+      .hero {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 2rem;
+        margin-bottom: 5rem;
+        align-items: flex-start;
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      @media (min-width: 768px) {
+        .hero {
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        letter-spacing: -0.05rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+        color: #4a3b3e; /* Đậm hơn chút để nổi bật */
+      }
+
+      .hero-content .tagline {
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .hero-img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 8px 24px rgba(214, 140, 158, 0.25); /* Bóng hồng nhạt */
+        border: 2px solid #fff;
+      }
+
+      /* Nút bấm chỉnh lại màu hồng */
+      .btn-primary {
+        display: inline-block;
+        background: var(--accent-color);
+        color: white;
+        padding: 0.7rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        border: 1px solid var(--accent-color);
+      }
+      .btn-primary:hover {
+        background: var(--accent-hover);
+        border-color: var(--accent-hover);
+      }
+
+      .btn-secondary {
+        padding: 0.7rem 1.2rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-primary);
+      }
+      .btn-secondary:hover {
+        background-color: var(--hover-bg);
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+
+      /* --- SECTIONS GENERAL --- */
+      section {
+        margin-bottom: 6rem;
+        scroll-margin-top: 100px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: var(--contact-header); /* Tiêu đề màu hồng đất */
+      }
+
+      h2 i {
+        color: var(--accent-color); /* Icon tiêu đề màu hồng nhạt */
+        font-size: 1.1rem;
+      }
+
+      /* --- EXPERIENCE TIMELINE --- */
+      .experience-item {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      @media (min-width: 600px) {
+        .experience-item {
+          grid-template-columns: 140px 1fr;
+          gap: 2rem;
+        }
+      }
+      .date {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .role-title {
+        font-weight: 600;
+        font-size: 1.05rem;
+        color: var(--text-primary);
+      }
+      .company {
+        color: var(--accent-color); /* Tên công ty/Role màu hồng */
+        font-weight: 500;
+      }
+      .achievements li {
+        position: relative;
+        padding-left: 1.2rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.95rem;
+        color: var(--text-primary);
+      }
+      .achievements li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color); /* Dấu chấm màu hồng */
+      }
+
+      /* --- ARTIFACTS GRID --- */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        border: 1px solid var(--border-color);
+        border-radius: 12px; /* Bo góc mềm hơn */
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card:hover {
+        box-shadow: 0 10px 25px rgba(214, 140, 158, 0.15); /* Bóng hồng khi hover */
+        transform: translateY(-4px);
+        border-color: var(--accent-color);
+      }
+
+      .card-img {
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .card-content {
+        padding: 16px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-title {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-primary);
+      }
+      .card-title i {
+        color: var(--accent-color);
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 20px; /* Tag bo tròn style mới */
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-bottom: 10px;
+        width: fit-content;
+      }
+      .tag.green {
+        background: var(--tag-green-bg);
+        color: var(--tag-green-text);
+      }
+      .tag.purple {
+        background: var(--tag-purple-bg);
+        color: var(--tag-purple-text);
+      }
+      .tag.orange {
+        background: var(--tag-orange-bg);
+        color: var(--tag-orange-text);
+      }
+      .tag.red {
+        background: var(--tag-red-bg);
+        color: var(--tag-red-text);
+      }
+      .tag.grey {
+        background: var(--tag-grey-bg);
+        color: var(--tag-grey-text);
+      }
+
+      .card-desc {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      /* --- MODAL (POPUP) --- */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(60, 40, 45, 0.4); /* Overlay màu tối ám hồng */
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .modal-content {
+        background: #fff;
+        width: 100%;
+        max-width: 800px;
+        height: 90vh;
+        border-radius: 16px;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-header {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        padding: 1.5rem 2.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+      }
+
+      .modal-header h3 {
+        color: var(--contact-header);
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: var(--text-secondary);
+        padding: 5px;
+        border-radius: 4px;
+      }
+      .close-btn:hover {
+        background: var(--hover-bg);
+        color: var(--accent-color);
+      }
+
+      .modal-body {
+        padding: 2.5rem;
+      }
+      .modal-cover {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+      }
+
+      /* Doc Sections inside Modal */
+      .doc-section {
+        background: #faf7f8; /* Nền xám hồng rất nhẹ */
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+        border-left: 4px solid #d3d3d3;
+      }
+      .doc-section h4 {
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95rem;
+        color: #4a3b3e;
+      }
+      .revision-box {
+        background: var(--revision-bg);
+        border-left-color: #74cfa3; /* Xanh ngọc nhẹ */
+      }
+      .feedback-box {
+        background: var(--feedback-bg);
+        border-left-color: #8bbce3; /* Xanh dương nhẹ */
+      }
+
+      /* CV Preview Styles */
+      .cv-preview {
+        background: #fffbfc; /* Nền CV hơi hồng nhẹ */
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+      }
+      .cv-header {
+        border-bottom: 2px solid var(--accent-color);
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+      }
+      .cv-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--contact-header);
+      }
+      .cv-subtitle {
+        color: #777;
+        font-size: 1rem;
+        margin-top: 0.5rem;
+      }
+      .cv-section {
+        margin-bottom: 1.5rem;
+      }
+      .cv-section h5 {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: var(--accent-color);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3rem;
+        margin-bottom: 0.8rem;
+        letter-spacing: 0.05em;
+        font-weight: 700;
+      }
+      .cv-role {
+        font-weight: 600;
+        font-size: 1rem;
+        margin-top: 1rem;
+        color: #333;
+      }
+      .cv-company {
+        font-size: 0.9rem;
+        color: #666;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+      .cv-list {
+        font-size: 0.9rem;
+        color: #444;
+        margin-left: 1rem;
+      }
+      .cv-list li {
+        margin-bottom: 0.3rem;
+        list-style-type: disc;
+      }
+
+      .feedback-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+
+      /* --- CONTACT SECTION (PASTEL PINK THEME) --- */
+      .contact-header {
+        color: var(--contact-header);
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+      }
+
+      .contact-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      @media (min-width: 768px) {
+        .contact-wrapper {
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+
+      .contact-image-container {
+        flex: 1;
+        max-width: 400px;
+      }
+
+      .contact-image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        object-fit: cover;
+        display: block;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .contact-info-box {
+        flex: 2;
+        background-color: var(--contact-bg); /* Nền hồng pastel */
+        padding: 2.5rem;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+        border: 1px solid #f2dbe0;
+      }
+
+      .contact-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.05rem;
+        color: #5e4b4b; /* Chữ đậm màu */
+      }
+
+      .contact-row i {
+        width: 24px;
+        text-align: center;
+        color: var(--accent-color); /* Icon màu hồng */
+        font-size: 1.1rem;
+      }
+
+      .contact-row a:hover {
+        text-decoration: underline;
+        color: var(--contact-header);
+      }
+
+      /* --- SKILLS --- */
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      .skill-badge {
+        background-color: var(--hover-bg);
+        color: var(--text-primary);
+        padding: 0.5rem 1.2rem;
+        border-radius: 20px; /* Bo tròn badge */
+        font-size: 0.9rem;
+        border: 1px solid var(--border-color);
+        transition: 0.2s;
+      }
+      .skill-badge:hover {
+        background-color: #fcecf0;
+        border-color: var(--accent-color);
+        color: var(--contact-header);
+      }
+
+      /* --- FOOTER --- */
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="logo"></i> TueNhi.</div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#artifacts">Artifacts</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <header class="hero">
+        <div class="hero-content">
+          <h1>Hi, I'm Nguyen Tue Nhi.</h1>
+          <p class="tagline">
+            Multimedia Communication Student • TikTok Creator • Future
+            Strategist
+          </p>
+          <div style="display: flex; gap: 1rem">
+            <a href="#artifacts" class="btn-primary">View Portfolio</a>
+            <a href="#contact" class="btn-secondary">Contact Me</a>
+          </div>
+        </div>
+        <img
+          src="avatar.jpg"
+          alt="Tue Nhi"
+          class="hero-img"
+        />
+      </header>
+
+      <section id="about">
+        <h2><i class="fa-regular fa-user"></i> About Me</h2>
+        <p>
+          I am a senior majoring in Multimedia Communication at VinUni. Beyond my academic pursuits, I am an active Content Creator on TikTok, where I experiment with emerging storytelling trends.
+        </p>
+        <p>
+          This portfolio curates the artifacts I have created in preparation for my professional journey, bridging the gap between academic thinking and practical hands-on experience.
+        </p>
+      </section>
+
+      <section id="experience">
+        <h2><i class="fa-regular fa-calendar"></i> Experience</h2>
+
+        <div class="experience-item">
+          <div class="date">3/2025 — Present</div>
+          <div class="details">
+            <div class="role-title">Community Management Executive</div>
+            <div class="company">ALPHA COLLEGE PREP</div>
+            <ul class="achievements">
+              <li>
+                Monitor online discussions and user feedback, ensuring a
+                positive community environment.
+              </li>
+              <li>
+                Author 15+ Facebook posts and create a communication plan to
+                organize 5 workshops.
+              </li>
+              <li>
+                Create and publish over 10 Facebook posts and 2 short-form
+                TikTok videos, increasing reach to over 1,000 users per post.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="date">2022 — Present</div>
+          <div class="details">
+            <div class="role-title">Content Creator | TIKTOK @TNHITNHII</div>
+            <div class="company">Freelance</div>
+            <ul class="achievements">
+              <li>
+                Create attractive, dynamic, trend-catching contents based on
+                TikTok trends.
+              </li>
+              <li>
+                Attract nearly 17,000 followers by 90 videos with 630,000 likes
+                in 2 years.
+              </li>
+              <li>
+                Cooperated with 8 brands to promote new products, reaching
+                100,000 views on TikTok.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="artifacts">
+        <h2><i class="fa-solid fa-layer-group"></i> Artifacts Collection</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-secondary)">
+          Bộ hồ sơ xin việc hoàn chỉnh của tôi. Bấm vào từng thẻ để xem chi tiết
+          quá trình thực hiện và phản hồi.
+        </p>
+
+        <div class="gallery-grid">
+          <div class="card" onclick="openModal('modal1')">
+            <img
+              src="Statement of Purpose.jpg"
+              class="card-img"
+              alt="Statement"
+            />
+            <div class="card-content">
+              <div class="card-title">
+                <i class="fa-regular fa-file-lines"></i> Statement of Purpose
+              </div>
+              <span class="tag green">Artifact 1</span>
+              <p class="card-desc">
+                My professional goals, description of artifacts, reflection, and
+                connection between artifacts and my future aspirations.
+              </p>
+            </div>
+          </div>
+
+          <div class="card" onclick="openModal('modal2')">
+            <img
+              src="CV.jpeg"
+              class="card-img"
+              alt="CV"
+            />
+            <div class="card-content">
+              <div class="card-title">
+                <i class="fa-regular fa-id-card"></i> Professional CV
+              </div>
+              <span class="tag purple">Artifact 2</span>
+              <p class="card-desc">
+                Designed and developed a responsive CV highlighting creative and
+                business skills.
+              </p>
+            </div>
+          </div>
+
+          <div class="card" onclick="openModal('modal3')">
+            <img
+              src="Thank-you letter.jpg"
+              class="card-img"
+              alt="Thank You"
+            />
+            <div class="card-content">
+              <div class="card-title">
+                <i class="fa-regular fa-envelope-open"></i> Thank-you letter
+              </div>
+              <span class="tag orange">Artifact 4</span>
+              <p class="card-desc">Post interview messages with impact.</p>
+            </div>
+          </div>
+
+          <div class="card" onclick="openModal('modal4')">
+            <img
+              src="Cover Letter.jpg"
+              class="card-img"
+              alt="Cover Letter"
+            />
+            <div class="card-content">
+              <div class="card-title">
+                <i class="fa-regular fa-paper-plane"></i> Cover letter
+              </div>
+              <span class="tag red">Artifact 5</span>
+              <p class="card-desc">Custom letters for job applications.</p>
+            </div>
+          </div>
+
+          <div class="card" onclick="openModal('modal5')">
+            <img
+              src="Professional Emails.jpg"
+              class="card-img"
+              alt="Emails"
+            />
+            <div class="card-content">
+              <div class="card-title">
+                <i class="fa-solid fa-at"></i> Professional emails
+              </div>
+              <span class="tag grey">Artifact 6</span>
+              <p class="card-desc">For networking, inquiry, follow-up.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2><i class="fa-solid fa-bolt"></i> Skills & Tools</h2>
+        <div class="skills-container">
+          <span class="skill-badge">Content Strategy</span>
+          <span class="skill-badge">TikTok/Reels Production</span>
+          <span class="skill-badge">Video Editing (CapCut/Premiere)</span>
+          <span class="skill-badge">Public Speaking</span>
+          <span class="skill-badge">Adobe Creative Suite</span>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 class="contact-header">Let’s Work Together!</h2>
+
+        <div class="contact-wrapper">
+          <div class="contact-image-container">
+            <img src="phone.jpg" alt="Contact Phone" />
+          </div>
+
+          <div class="contact-info-box">
+            <div class="contact-row">
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:0968614907">096 861 4907</a>
+            </div>
+            <div class="contact-row">
+              <i class="fa-regular fa-envelope"></i>
+              <a href="mailto:nhingtue@gmail.com">nhingtue@gmail.com</a>
+            </div>
+            <div class="contact-row">
+              <i class="fa-solid fa-building-columns"></i>
+              <span>Hanoi, Vietnam</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>© 2024 Nguyen Tue Nhi. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Statement of Purpose</h3>
+          <button class="close-btn" onclick="closeModal('modal1')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img
+            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=1000"
+            class="modal-cover"
+          />
+
+          <h4>Statement of Purpose</h4>
+          <p>
+            As a student majoring in Multimedia Communication at VinUniversity and a passionate content creator on TikTok, I have always loved telling stories through visuals. My long-term dream is to work professionally in the media industry, creating impactful campaigns that resonate with audiences. Currently, while I am still studying, I want to step into the real world and gain practical experience through internships and part-time jobs. This portfolio is my way of preparing for that journey, serving as a bridge between my life as a student creator and my future as a professional media practitioner. My goal is to use these documents to show potential employers that I am ready to work.
+            <br> 
+            <br> 
+            I have chosen the <strong>Job Seeking Package</strong> because my immediate priority is to apply for jobs that fit my schedule and skills. To achieve this, I have included five specific artifacts: a creative yet professional CV that highlights my multimedia experience, a tailored Cover Letter that explains my passion, Email Templates for networking, and Thank-You Notes for post-interview follow-ups. Each document is designed with a specific audience in mind—recruiters and hiring managers. I want to prove to them that even though I am a student, I possess the discipline and professionalism required for the job. These documents are not just assignments; they are the actual tools I will use to knock on career doors.
+            <br> 
+            <br> 
+            Looking back at my time in this course, I feel a deep sense of accomplishment that I did not expect. To be honest, I used to be very unconfident about my English writing skills. When I first saw that we had to write a Literature Review, I was terrified; I genuinely did not believe I could complete such a difficult academic task because I did not think my English was good enough. However, Professor Jon’s interesting and detailed lectures changed everything for me. He taught us with such dedication, focusing on even the smallest details—from capitalization rules to exactly where to put commas in the reference list. These specific lessons helped me realize that professional writing is about care, structure, and attention to detail, not just about knowing big words.
+            <br>
+            <br>
+            Thanks to this course, I have overcome my fear of writing and moved from self-doubt to feeling capable. I am truly grateful to Professor Jon for his enthusiastic guidance, and I also want to send a special thank you to Ms. Lan, our Teaching Assistant. Her support and feedback helped me feel more confident in my work. Completing the Literature Review gave me the belief that I can handle difficult tasks if I put my heart into them. This portfolio is proof of my growth, and I am now ready to send these documents to future employers with pride and confidence.
+          </p>
+
+          <div class="doc-section feedback-box">
+            <h4>
+              <i class="fa-regular fa-comments"></i> Peer Feedback Documentation
+            </h4>
+            <p><strong>Reviewer:</strong> Nguyễn Thanh Trúc</p>
+            <p><strong>Date:</strong> 17/12/2025</p>
+            <p><img src="fbtt.jpg" class="feedback-image" /></p>
+            <p><strong>General Feedback:</strong></p>
+            <p>
+                This Statement of Purpose is compelling because of its authentic voice and the clear connection you draw between your academic background at VinUni and your career goals. However, to make it stronger for a professional audience, I recommend condensing the section on self-doubt to maintain a more confident tone. 
+            </p>
+          </div>
+
+          <div class="doc-section revision-box">
+            <h4><i class="fa-solid fa-rotate-right"></i> Revision Process</h4>
+            <p><strong>Action Taken:</strong></p>
+            <p>Based on the feedback received, I will refine my Statement of Purpose to project a more confident and professional image suitable for a media practitioner. In order to demonstrate my readiness for the industry, I will rewrite the reflection section to shift the focus from my initial insecurities to the constructive challenges I successfully overcame. I will replace language that emphasizes self-doubt with phrasing that highlights resilience, adaptability, and academic growth. These changes will ensure my portfolio conveys not just authenticity, but also the strength and capability expected by potential employers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Professional CV</h3>
+          <button class="close-btn" onclick="closeModal('modal2')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000"
+            class="modal-cover"
+          />
+
+          <div class="cv-preview">
+            <div class="cv-header">
+              <h2 class="cv-title">Nguyen Tue Nhi</h2>
+              <p class="cv-subtitle">Creative Communications Leader</p>
+              <p style="margin-top: 0.5rem; font-size: 0.9rem">
+                Hanoi, Vietnam | nhingtue@gmail.com | 0968614907
+              </p>
+            </div>
+
+            <div class="cv-section">
+              <h5>Summary</h5>
+              <p style="font-size: 0.9rem">
+                A well-rounded Creative Communications Leader with a wealth of
+                experience in event organization, personal branding, business
+                development, and content creation.
+              </p>
+            </div>
+
+            <div class="cv-section">
+              <h5>Experience</h5>
+              <div class="cv-role">Community Management Executive</div>
+              <div class="cv-company">
+                <span>ALPHA COLLEGE PREP</span> <span>3/2025 - Present</span>
+              </div>
+              <ul class="cv-list">
+                <li>
+                  Monitor online discussions and collaborate with the marketing
+                  team to launch successful campaigns.
+                </li>
+                <li>
+                  Author 15+ Facebook posts and create a communication plan.
+                </li>
+              </ul>
+
+              <div class="cv-role">Content Creator | TIKTOK @TNHITNHII</div>
+              <div class="cv-company">
+                <span>Freelance</span> <span>2022 - Present</span>
+              </div>
+              <ul class="cv-list">
+                <li>
+                  Attract nearly 17,000 followers by 90 videos with 630,000
+                  likes.
+                </li>
+                <li>
+                  Cooperated with 8 brands to promote new products, reaching
+                  100,000 views.
+                </li>
+              </ul>
+
+              <div class="cv-role">Founder | BUSINESS WORK</div>
+              <div class="cv-company">
+                <span>Rosette Custom & Cassie Beads</span>
+                <span>2023 - 5/2025</span>
+              </div>
+              <ul class="cv-list">
+                <li>
+                  Created the first custom seashell mirror shop in Vietnam.
+                </li>
+                <li>
+                  Resulting in a social media following of 800 and a total of
+                  10,500 likes.
+                </li>
+              </ul>
+            </div>
+
+            <div class="cv-section">
+              <h5>Education</h5>
+              <div class="cv-role">VinUniversity</div>
+              <p style="font-size: 0.9rem">Arts in Multimedia Communication</p>
+            </div>
+          </div>
+
+          <div class="doc-section feedback-box">
+            <h4>
+              <i class="fa-regular fa-comments"></i> Peer Feedback Documentation
+            </h4>
+            <p><strong>Reviewer:</strong> Nguyen Huong Giang</p>
+            <p><strong>Date:</strong> 1/11/2025</p>
+            <p><img src="fbhg.jpg" class="feedback-image" /></p>
+            <p><strong>General Feedback:</strong></p>
+            <p>
+              Overall, this is a great CV draft as it effectively highlights
+              your strong skill sets and experiences in both creative ability
+              and business experience. The detailed metrics, such as likes,
+              followers, and user reach, make the impact of your CV very
+              impressive. However, fixing the wording of your soft skills part
+              to be more specific will significantly enhance the document's
+              impact and professionalism.
+            </p>
+          </div>
+
+          <div class="doc-section revision-box">
+            <h4><i class="fa-solid fa-rotate-right"></i> Revision Process</h4>
+            <p><strong>Action Taken:</strong></p>
+            <p>Reflecting on the peer feedback, I recognized a critical area for improvement regarding the "Soft Skills" section of my CV. While my quantitative metrics—such as follower counts and engagement rates—were praised for their impact, the reviewer noted that listing generic terms like "Teamwork" and "Communication" failed to capture the depth of my creative experience. To address this, I completely revised this section to be more context-specific. Instead of using vague keywords, I refined the wording to reflect high-level creative attributes and allowed my specific achievements to serve as proof of these skills. By removing the generic fillers and focusing on actionable descriptors, I have enhanced the document's professionalism to better resonate with a high-level creative audience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal3" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Thank-you letter</h3>
+          <button class="close-btn" onclick="closeModal('modal3')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img
+            src="https://images.unsplash.com/photo-1555617778-02518510b9fa?auto=format&fit=crop&q=80&w=1000"
+            class="modal-cover"
+          />
+          <h4>1. Thank-you note for Content Creator Interview:</h4>
+          <p>
+            <strong>Subject:</strong> Thank you for Content Creator Interview
+            Creator Interview
+          </p>
+          <p>
+            Dear Ms. Phuong,
+            <br>
+            <br>
+            Thank you so much for the opportunity to interview for the Content Creator position at Onsra earlier today. I truly enjoyed discussing the creative direction of the brand and sharing my experience in building my personal TikTok channel to 17,000 followers.
+            <br>
+            <br>
+            I particularly appreciated our candid conversation regarding how I balance my academic commitments at VinUniversity with professional work. As I mentioned, my experience in managing my own channel has trained me to be disciplined and efficient with my time, ensuring that I can deliver high-quality content for Onsra without compromising my studies.
+            <br>
+            <br>
+            Furthermore, I am still thinking about your question regarding solutions for Onsra’s current TikTok channel. I remain confident that by adjusting the visual pacing and incorporating more narrative-driven hooks—as we discussed—we can significantly increase viewer retention and engagement. I am eager to apply these strategies to help Onsra grow its digital presence.
+            <br>
+            <br>
+            Thank you again for your time and consideration. I look forward to the possibility of joining the team.
+            <br>
+            <br>
+            Warm regards,<br>
+            Tue Nhi
+
+          </p>
+          <br>
+            <br>    
+          <h4>2. Thank-you note for Social Media Management Interview:</h4>
+          <p>
+            <strong>Subject:</strong> Thank you for Social Media Management Interview
+          </p>
+          <p>
+            Dear Ms. Jamie,
+            <br>
+            <br>
+            I would like to sincerely thank you for taking the time to discuss the Social Media Management role at NeuroLegacy with me today. It was inspiring to hear about your vision for the upcoming podcast channel and the goal of reaching a global audience, specifically in the UK.
+            <br>
+            <br>
+            Our discussion on how to leverage short-form content to build a new podcast channel from scratch was incredibly insightful. I am excited about the challenge of adapting the strategies I used to grow my 17k-follower TikTok channel to fit NeuroLegacy’s professional tone and international target market. I believe that by focusing on cultural nuances and content localization, we can effectively capture the attention of the UK audience as intended.
+            <br>
+            <br>
+            I am very enthusiastic about the opportunity to contribute to NeuroLegacy’s growth and help launch this podcast successfully. Thank you for considering my application.
+            <br>
+            <br>
+            Warm regards,<br>
+            Tue Nhi
+
+          </p>
+          <div class="doc-section feedback-box">
+            <h4>
+              <i class="fa-regular fa-comments"></i> Peer Feedback Documentation
+            </h4>
+            <p><strong>Reviewer:</strong> Nguyễn Vũ Như Ý</p>
+            <p><strong>Date:</strong> 20/12/2025</p>
+            <p><img src="fbny.jpg" class="feedback-image" /></p>
+            <p><strong>General Feedback:</strong></p>
+            <p>
+              Your thank-you notes are compelling because they demonstrate active listening by referencing specific interview topics like "visual pacing" and "content localization," which reinforces your value to the employers. The tone is professional and enthusiastic, showing that you are ready to contribute immediately. However, to ensure these look like real professional artifacts, you must add a clear Subject Line and a complete contact signature block (for example: LinkedIn, phone number) to each note.
+            </p>
+          </div>
+          <div class="doc-section revision-box">
+            <h4><i class="fa-solid fa-rotate-right"></i> Revision Process</h4>
+            <p>
+              <strong>Action Taken:</strong> <br>
+              Based on the peer review of my Thank-You Notes, I will change the formatting to strictly adhere to professional email standards. First, I realized that my drafts were missing crucial subject lines; I will add clear, specific headers such as "Thank You - [Job Title] Interview - [My Name]" to ensure they are immediately recognizable to busy recruiters. Second, to complete the professional look, I will append a full signature block containing my phone number and LinkedIn profile to the bottom of each note. These technical additions will transform my drafts from simple text into authentic, ready-to-send professional artifacts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal4" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Cover Letter</h3>
+          <button class="close-btn" onclick="closeModal('modal4')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img
+            src="https://images.unsplash.com/photo-1512314889357-e157c22f938d?auto=format&fit=crop&q=80&w=1000"
+            class="modal-cover"
+          />
+          <h4>1. Cover letter template</h4>
+          <p>
+            Dear Sir/Madam,
+            <br>
+            <br>
+            My name is Nhi, and I am currently a student majoring in Multimedia Communication at VinUniversity. I am writing to express my strong interest in the [Position Name] at [Company Name].
+            <br>
+            <br>
+            Through my experience as a Content Creator, I have developed and refined the core skills necessary to excel in this role. I have acquired a deep understanding of video production, social media trends, and digital storytelling. I believe these key competencies are essential for the position and align well with your team's needs. You can find more details about my responsibilities and achievements in my attached CV.
+            <br>
+            <br>
+            I found out about this [Position Name] position through LinkedIn. After thoroughly reviewing the job description, I am enthusiastic about the opportunity to contribute my proactive approach and creative mindset to [Company Name].
+            <br>
+            <br>
+            Thank you for considering my application. I look forward to discussing further how I can support [Company Name]’s goals and contribute to your team's success.
+            <br>
+            <br>
+            Sincerely,<br>
+            Tue Nhi
+          </p>
+          <br>
+            <br>    
+          <h4>2. Specific Position 1: Content Creator at Onsra</h4>
+          <p>
+            Dear Ms. Phuong,
+            <br>
+            <br>
+            I have been a devoted follower of Onsra for a long time, and I am continually inspired by how you have established the brand as the first unique feminine fashion house in Vietnam. What resonates with me most is the authentic storytelling behind your shop. I particularly love the TikTok videos where you personally pack orders while replying to customer comments—it creates a sense of intimacy and trust that is rare in the fashion industry.
+            <br>
+            <br>
+            My name is Nhi, a Multimedia Communication student at VinUniversity and a content creator with a personal TikTok channel of 17,000 followers. My experience in building my own community has taught me that successful content is not just about aesthetics, but about connection. I specialize in creating narrative-driven short videos that hook viewers within the first few seconds, a skill I am eager to use to amplify Onsra’s unique story.
+            <br>
+            <br>
+            Given my background in multimedia and my practical experience on TikTok, I am confident I can help Onsra produce content that maintains your signature feminine style while driving even higher engagement. You can find more details about my channel growth and creative projects in my attached CV.
+            <br>
+            <br>
+            I am enthusiastic about the opportunity to bring my creativity and proactive approach to Onsra. Thank you for considering my application, and I look forward to the possibility of discussing how we can create the next viral campaign together.
+            <br>
+            <br>
+            Warm regards,<br>
+            Tue Nhi
+
+          </p>
+            <br>
+            <br>
+          <h4>3. Specific Position 2: Social Media Management at NeuroLegacy</h4>
+          <p>
+            Dear Ms. Jamie,
+            <br>
+            <br>
+            Discovering NeuroLegacy was a spark of inspiration for me. I am deeply impressed by the company’s unique and novel direction in the field, especially your vision to expand impact on a global scale. As a student constantly seeking to push boundaries, I have a strong desire to challenge myself in an international working environment, which is why I feel drawn to this opportunity at NeuroLegacy.
+            <br>
+            <br>
+            My name is Nhi and I hold a background in Multimedia Communication from VinUniversity. Beyond my academic studies, I have honed my skills as a video editor and content creator, managing a personal channel with 17,000 followers. This experience has given me a deep understanding of cross-platform behavior—knowing exactly how to adapt a piece of content for TikTok, Instagram, or YouTube to maximize reach.
+            <br>
+            <br>
+            I am confident that my technical editing skills, combined with my ability to analyze social media trends across different platforms, will allow me to effectively support NeuroLegacy’s global communication goals. You can find specific examples of my multi-platform campaigns and editing projects in my attached CV.
+            <br>
+            <br>
+            I am eager to bring my technical expertise and global mindset to the NeuroLegacy team. Thank you for your time and consideration. I look forward to discussing how my skills can contribute to expanding the company’s digital footprint.
+            <br>
+            <br>
+            Warm regards,<br>
+            Tue Nhi
+
+          </p>
+          </div>
+          <div class="doc-section feedback-box">
+            <h4>
+              <i class="fa-regular fa-comments"></i> Peer Feedback Documentation
+            </h4>
+            <p><strong>Reviewer:</strong> Phạm Hoàng Hải</p>
+            <p><strong>Date:</strong> 22/12/2025</p>
+            <p><img src="fbhh.jpg" class="feedback-image" /></p>
+            <p><strong>General Feedback:</strong></p>
+            <p>
+              Your specific cover letters for Onsra and NeuroLegacy are content-wise very strong because they demonstrate deep research and a clear connection between your personal branding and the employers' needs. However, the documents currently fail to meet standard business conventions because they lack formal headers (contact info, date, recipient address) and include redundant phrases like "My name is Nhi" which should be removed to make the opening punchier. By fixing these formatting issues and removing the self-introduction sentence, these will become high-quality, professional artifacts ready for your portfolio.
+            </p>
+          </div>
+          <div class="doc-section revision-box">
+            <h4><i class="fa-solid fa-rotate-right"></i> Revision Process</h4>
+            <p>
+              <strong>Action Taken:</strong> 
+              <br>
+              I realized that while my content was strong, the formatting of my cover letters didn't look "official" enough. To fix this, I will add a standard business header to each document—including my contact info, the date, and the recipient's address—so they look like proper letters rather than just email drafts. I also agree with the reviewer’s point that starting with "My name is Nhi" is redundant and wastes valuable space. I will cut that phrase out and instead jump straight into my background as a Multimedia student and Creator. These small but precise tweaks will make my openings much punchier and show recruiters that I understand professional business conventions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal5" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Professional Emails</h3>
+          <button class="close-btn" onclick="closeModal('modal5')">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img
+            src="https://images.unsplash.com/photo-1557200134-90327ee9fafa?auto=format&fit=crop&q=80&w=1000"
+            class="modal-cover"
+          />
+          <h4>1. Networking Email </h4>
+          <p>
+            Dear Sir/Madam,
+            <br>
+            <br>
+            My name is Nhi, a Multimedia Communication student at VinUniversity and a content creator on TikTok with 17,000 followers. I have been a devoted follower of your channel on Schannel for a long time. I am particularly impressed by your scriptwriting logic and professional editing style. More importantly, your engaging vocal delivery and ability to hook the audience in the first few seconds have greatly influenced my own approach to video production.
+            <br>
+            <br>
+            I am writing to you because I admire your career path and would love to learn from your experience. As I prepare to step into the professional media industry, I would deeply value the opportunity to have a brief 15-minute coffee chat (or online call) with you. I would love to hear your insights on building a sustainable career as a professional creator and how to maintain creativity under pressure.
+            <br>
+            <br>
+            I know you are very busy, so I would be incredibly grateful for any time you could spare. Thank you for being such an inspiration to young creators like me.
+            <br>
+            <br>
+            Sincerely,<br>
+            Tue Nhi
+          </p>
+          <br>
+            <br>    
+          <h4>2. Inquiry Email</h4>
+          <p>
+            Dear Sir/Madam,
+            <br>
+            <br>
+            I am writing to express my strong interest in the Social Media Management position at NeuroLegacy. After reviewing the job description, I am excited about the opportunity to contribute to your mission of expanding the brand globally, especially towards the UK market.
+            <br>
+            <br>
+            To ensure my application and portfolio are best tailored to the specific needs of the team, I would appreciate it if you could clarify a few aspects of the role:
+            <br>
+            <br>
+                
+                1. Workload Balance: Could you share the expected balance between technical production (filming/editing) and strategic planning (content ideation/scripting) for this role?
+                <br>
+                2. Platform Focus: While the goal is global reach, could you clarify how many platforms the team is currently managing, and which platform is prioritized as the primary growth channel?
+
+            </ul>
+            <br>
+            <br>
+            Understanding these details would greatly help me align my skills and proposal with NeuroLegacy’s current direction.
+            <br>
+            <br>    
+            Thank you very much for your time and assistance.
+            <br>
+            <br>
+            Warm regards,<br>
+            Tue Nhi
+
+          </p>
+            <br>
+            <br>
+          <h4>3. Follow-up Email </h4>
+          <p>
+            Dear Sir/Madam,
+            <br>
+            <br>
+            I am writing to formally accept your offer for the Content Creator position at Onsra. I am truly honored and excited about the opportunity to contribute to Onsra’s unique storytelling and help grow the brand’s digital presence.
+            <br>
+            <br>
+            To help me prepare for a smooth transition, could you please provide some details regarding the onboarding process? Specifically, I would like to confirm my official start date and whether there are any specific documents or materials I should prepare in advance of my first day.
+            <br>
+            <br>
+            Thank you once again for this opportunity. I look forward to joining the team and starting our journey together.
+            <br>
+            <br>
+            I am eager to bring my technical expertise and global mindset to the NeuroLegacy team. Thank you for your time and consideration. I look forward to discussing how my skills can contribute to expanding the company’s digital footprint.
+            <br>
+            <br>
+            Warm regards,<br>
+            Tue Nhi
+
+          </p>
+          
+          <div class="doc-section feedback-box">
+            <h4>
+              <i class="fa-regular fa-comments"></i> Peer Feedback Documentation
+            </h4>
+            <p><strong>Reviewer:</strong> Lương Hoàng Thảo</p>
+            <p><strong>Date:</strong> 26/12/2025</p>
+            <p><img src="fbht.jpg" class="feedback-image" /></p>
+            <p><strong>General Feedback:</strong></p>
+            <p>
+              Your email drafts demonstrate strong strategic thinking, particularly in the Inquiry email where you ask insightful questions about platform prioritization and workload. However, the overall impact is weakened by significant formatting oversights, such as missing subject lines and incomplete signature blocks. Additionally, using the generic "Dear Sir/Madam" salutation in your Networking email contradicts your claim of being a "devoted follower." To make these documents effective, you need to fix the formatting and personalize the greeting for the creator you are contacting.
+            </p>
+          </div>
+          <div class="doc-section revision-box">
+            <h4><i class="fa-solid fa-rotate-right"></i> Revision Process</h4>
+            <p>
+              <strong>Action Taken:</strong> <br>
+              Reflecting on the peer feedback, I realized that formatting errors like missing Subject Lines and Signatures could make my emails look unprofessional or be mistaken for spam. To fix this, I will add clear, specific headers to every draft and include a full contact signature block with my LinkedIn and phone number. I will also correct the salutation in my Networking email; instead of using a generic "Dear Sir/Madam," I will address the creator by name to prove that I am a genuine follower and truly value their specific work.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+      window.onclick = function (event) {
+        if (event.target.classList.contains("modal")) {
+          event.target.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      };
+    </script>
+  </body>
+</html>
